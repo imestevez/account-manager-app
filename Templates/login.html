@@ -1,0 +1,31 @@
+{% include "/Templates/header.html" %}
+
+<!-- Main -->
+<section id="main" class="container medium">
+    <header>
+        <h2>Iniciar sesión</h2>
+    </header>
+    <div class="box">
+        <form method="post" action="#">
+            <div class="row gtr-50 gtr-uniform">
+                <form name="frmLogin" action="/login" method="post" onsubmit="return validate('frmLogin')">
+                    <div class="col-12">
+                        <input type="text" name="login" id="login" placeholder="Email"/>
+                    </div>
+                    <div class="col-12">
+                        <input type="password" id="id_password" placeholder="Password"/>
+                    </div>
+                    <div class="col-12">
+                        <ul class="actions special">
+                            <li>
+                                <input type="submit" value="Confirm"/>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% include "/Templates/footer.html" %}

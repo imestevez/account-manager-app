@@ -1,0 +1,25 @@
+application: account-manager
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+
+- url: /Resources
+  static_dir: Resources
+
+- url: /favicon\.ico
+  static_files: money.png
+  upload: money\.png
+
+- url: .*
+  script: main.app
+
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: "2.6"

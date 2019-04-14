@@ -1,0 +1,68 @@
+{% include "/Templates/header.html" %}
+<!-- Main -->
+<section id="main" class="container medium">
+    <header>
+        <h2>Nuevo Movimiento</h2>
+        <p>Añade un nuevo movimiento a tu cuenta.</p>
+    </header>
+    <div class="box">
+        <form method="post" action="/add">
+            <div class="row gtr-50 gtr-uniform">
+                <div class="col-12 col-12-mobilep">
+                    <label>
+                        Tipo *
+                        <select name="type" style="width:25%">
+                            <option value="deposit" selected>Ingreso</option>
+                            <option value="expense">Gasto</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-6 col-6-mobilep">
+                    Concepto *
+                    <input type="text" name="title" id="title" value="" placeholder="Introduce el concepto" required/>
+                </div>
+                <div class="col-4 col-4-mobilep" style="margin-left: 10%">
+                    Importe *
+                    <input style="height: 65%;" type="number" name="amount" id="amount" value="" placeholder="120"
+                           step="any" required/>
+                </div>
+                <div class="col-12">
+                    Descripción *
+                    <textarea name="description" id="description" placeholder="Introduce la descripción"
+                              rows="6" required></textarea>
+                </div>
+                <div class="col-12">
+                    <label>
+                        Fecha<Br>
+                        <input type="date" name="date" id="date" value="{{today}}" required/>
+                    </label>
+                </div>
+                <div class="col-12 col-12-mobilep">
+                    Resguardo del gasto<Br>
+                    <input type="file" name="invoice" id="invoice" value=""/>
+                </div>
+                <div class="col-4 col-4-mobilep">
+                    <label>
+                        Frecuencia *
+                        <select name="frequency">
+                            <option value="only" selected>Puntual</option>
+                            <option value="daily">Diario</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="monthly">Mensual</option>
+                            <option value="yearly">Anual</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="col-12">
+                    <ul class="actions special">
+                        <li><input class="small" type="submit" value="Añadir"/></li>
+                        <li><input class="small" type="reset" value="Cancelar"/></li>
+                        <li><input class="small" type="button" value="Volver" onClick="history.go(-1);return true;"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% include "/Templates/footer.html" %}

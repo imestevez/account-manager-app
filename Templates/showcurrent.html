@@ -1,0 +1,64 @@
+{% include "/Templates/header.html" %}
+<section id="main" class="container">
+    <header>
+        <h2>Vista en detalle</h2>
+        <p>Gestiona el movimiento actual.</p>
+    </header>
+    <div class="box">
+            {% if movement %}
+            <div class="table-wrapper">
+                <H3> <B>Tipo</B>: {% if movement.amount < 0 %}Gasto{% else %}Ingreso{% endif %}</H3>
+                <table >
+                    <tbody>
+
+                    <tr>
+                        <td><B>Concepto</B></td>
+                        <td>{{movement.title}}</td>
+                    </tr>
+                    <tr>
+                        <td><B>Importe</B></td>
+                        <td>{{movement.amount}}</td>
+                    </tr>
+                    <tr>
+                        <td><B>Fecha</B></td>
+                        <td>{{date}}</td>
+
+                    </tr>
+                    <tr>
+                        <td><B>Frecuencia</B></td>
+                        <td>{{frequency[movement.frequency]}}</td>
+                    </tr>
+                    <tr>
+                        <td><B>Comprobante</B></td>
+                        {% if movement.invoice == "" %}
+                        <td>-</td>
+                        {% else %}
+                        <td><a href="{{movement.invoice}}"/></td>
+                        {% endif %}
+                    </tr>
+                    </tbody>
+                </table>
+
+            <div class="col-12">
+                <B>Descripción</B>
+                <textarea name="description" id="description" placeholder="Introduce la descripción"
+                          rows="6" readonly> {{movement.description}}</textarea>
+            </div>
+                <Br>
+            <div class="col-12">
+                <ul class="actions special">
+                    <li><a class="button small"
+                           href="/edit?id={{movement.key.urlsafe()}}">Editar</a></li>
+                    <li><a class="button small" href="/delete?id={{movement.key.urlsafe()}}">Eliminar</a></li>
+                    <li><input class="small" type="button" value="Volver" onClick="history.go(-1);return true;"/>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+
+        </div>
+</section>
+
+
+{% include "/Templates/footer.html" %}
+

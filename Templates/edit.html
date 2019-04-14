@@ -1,0 +1,103 @@
+{% include "/Templates/header.html" %}
+<!-- Main -->
+<section id="main" class="container medium">
+    <header>
+        <h2>Modifica el Movimiento</h2>
+        <p>Edita los campos que desees del movimiento.</p>
+    </header>
+    <div class="box">
+        {% if movement %} <!-- If movement exists -->
+        <form method="post" action="/edit?id={{movement.key.urlsafe()}}">
+            <div class="row gtr-50 gtr-uniform">
+                <div class="col-12 col-12-mobilep">
+                    <label>
+                        Tipo *
+                        <select name="type" style="width:25%">
+                            {% if movement.amount > 0 %}
+                            <option value="deposit" selected>Ingreso</option>
+                            <option value="expense">Gasto</option>
+                            {% else %}
+                            <option value="deposit">Ingreso</option>
+                            <option value="expense" selected>Gasto</option>
+                            {% endif %}
+                        </select>
+                    </label>
+                </div>
+                <div class="col-6 col-6-mobilep">
+                    Concepto *
+                    <input type="text" name="title" id="title" value="{{movement.title}}"
+                           placeholder="Introduce el concepto" required/>
+                </div>
+                <div class="col-4 col-4-mobilep" style="margin-left: 10%">
+                    Importe *
+                    <input style="height: 65%;" type="number" name="amount" id="amount" value="{{movement.amount}}"
+                           placeholder="120" step="any"
+                           required/>
+                </div>
+                <div class="col-12">
+                    Descripción *
+                    <textarea name="description" id="description" placeholder="Introduce la descripción"
+                              rows="6" required> {{movement.description}}</textarea>
+                </div>
+                <div class="col-12">
+                    <label>
+                        Fecha<Br>
+                        <input type="date" name="date" id="date" value="{{movement.date}}" required/>
+                    </label>
+                </div>
+                <div class="col-12 col-12-mobilep">
+                    Resguardo del gasto<Br>
+                    <input type="file" name="invoice" id="invoice" value="{{movement.invoice}}"/>
+                </div>
+                <div class="col-4 col-4-mobilep">
+                    <label>
+                        Frecuencia *
+                        <select name="frequency">
+                            {% if movement.frequency == 'only' %}
+                            <option value="only" selected>Puntual</option>
+                            <option value="daily">Diario</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="monthly">Mensual</option>
+                            <option value="yearly">Anual</option>
+                            {% elif movement.frequency == 'daily' %}
+                            <option value="only" >Puntual</option>
+                            <option value="daily" selected>Diario</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="monthly">Mensual</option>
+                            <option value="yearly">Anual</option>
+                            {% elif movement.frequency == 'weekly' %}
+                            <option value="only">Puntual</option>
+                            <option value="daily">Diario</option>
+                            <option value="weekly" selected>Semanal</option>
+                            <option value="monthly">Mensual</option>
+                            <option value="yearly">Anual</option>
+                            {% elif movement.frequency == 'monthly' %}
+                            <option value="only">Puntual</option>
+                            <option value="daily">Diario</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="monthly" selected>Mensual</option>
+                            <option value="yearly">Anual</option>
+                            {% else %}
+                            <option value="only">Puntual</option>
+                            <option value="daily">Diario</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="monthly">Mensual</option>
+                            <option value="yearly" selected>Anual</option>
+                            {% endif %}
+                        </select>
+                    </label>
+                </div>
+                <div class="col-12">
+                    <ul class="actions special">
+                        <li><input class="small" type="submit" value="Actualizar"/></li>
+                        <li><input class="small" type="reset" value="Cancelar"/></li>
+                        <li><input class="small" type="button" value="Volver" onClick="history.go(-1);return true;"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</section>
+{% include "/Templates/footer.html" %}

@@ -1,0 +1,36 @@
+{% include "/Templates/header.html" %}
+<section id="main" class="container">
+    <header>
+        <h2>Bienvenido {{name}} </h2>
+        <p>Administra tus gastos e ingresos con Account Manager App.</p>
+    </header>
+    <span class="image featured"><img src="" alt=""/></span>
+    <h3><B>Día {{today}} </B></h3>
+    <div class="row">
+        <div class="row-6 row-12-mobilep">
+            {% if movements.count() > 0 %}
+            <h3>Saldo actual:<B> {{amount}}€ </B></h3>
+            <a href="/showall" class="button small">Movimientos</a>
+            {% else %}
+            <h3>Actualmente no hay ningún movimiento registrado. </B></h3>
+            <a class="button small alt">Movimientos</a>
+            {% endif %}
+            <a href="/add" class="button small">Añadir</a>
+            <Br> <Br> <Br>
+            <p>Con Account Manager App podrás gestionar los movimientos que realices, tanto ingresos como gastos.
+            <p>Te permite programar movimientos (diarios, semanales, mensuales o anuales) o simplemente establecer
+                un movimiento puntual. Se mostrará un balance entre los gastos e ingresos que hay registrados
+                actualmente.
+                Podrás añadir los movimientos adjuntando el comprobante o factura. De esta forma podrás organizar mejor
+                tus transacciones. También te permitirá filtrar los movimintos en función del tipo (gasto o ingreso) o
+                por un rango de fecha. Podrás editar los movimientos de forma sencilla además de elimimnarlos si lo
+                deseas. </p>
+
+            <p><B style="color: red"> *Nota: </B> Solamente se realiza el balance de los movimientos con una fecha menor
+                o igual a la de actual.</p>
+
+        </div>
+    </div>
+</section>
+{% include "/Templates/footer.html" %}
+

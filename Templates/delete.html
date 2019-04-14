@@ -1,0 +1,24 @@
+{% include "/Templates/header.html" %}
+<section id="main" class="container">
+    <header>
+        <h2>Elimnar Movimiento</h2>
+        <p>Elimina el movimiento la aplicación.</p>
+    </header>
+    <span class="image featured"><img src="" alt=""/></span>
+    <div class="box">
+
+        <h3 style="text-align: center"><B>¿Desea eliminar el movimiento {{movement.title}} ?</B></h3>
+        <p><B style="color: red"> *AVISO: </B>Si eliminas el movimiento no prodrás volverlo a recuperar.</p>
+        <form method="post" action="/delete?id={{movement.key.urlsafe()}}">
+            <div class="col-12">
+                <ul class="actions special">
+                    <li><input class="small" type="submit" value="Eliminar"/></li>
+                    <li><input class="small" type="button" value="Volver" onClick="history.go(-1);return true;"/>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</section>
+{% include "/Templates/footer.html" %}
+

@@ -1,0 +1,55 @@
+{% include "/Templates/header.html" %}
+<section id="main" class="container">
+    <header>
+        <h2>Todos los movimientos</h2>
+        <p>Visaliza y gestiona todos tus movimientos realizados hasta ahora.</p>
+    </header>
+    <div class="box">
+        {% if movements and numMovements > 0%}
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th><B>Concepto</B></th>
+                    <th><B>Importe</B></th>
+                    <th><B>Tipo</B></th>
+                    <th><B>Fecha</B></th>
+                    <th>
+                        <a class="button small" href="/search?">Filtrar</a>
+                        <a class="button small" href="/add?">Añadir</a>
+
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for movement in movements %}
+                <tr>
+                    <td>{{movement.title}}</td>
+                    <td>{{movement.amount}}</td>
+                    <td>{{frequency[movement.frequency]}}</td>
+                    <td>{{dates[movement.key]}}</td>
+                    <td>
+                        <a class="button small"
+                           href="/showcurrent?id={{movement.key.urlsafe()}}">Detalles</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <H3>No hay ninún movimiento que coincida con los parámentros de búsqueda.</H3>
+        <br>
+        {% endif %}
+
+        <div class="col-12">
+            <ul class="actions special">
+                <li><input class="small" type="button" value="Volver" onClick="history.go(-1);return true;"/></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+{% include "/Templates/footer.html" %}
+

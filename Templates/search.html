@@ -1,0 +1,55 @@
+{% include "/Templates/header.html" %}
+<!-- Main -->
+<section id="main" class="container medium">
+    <header>
+        <h2>Filtrar Movimientos</h2>
+        <p>Busca los movimientos que desees por tipo, frecuencia o fecha.</p>
+    </header>
+    <div class="box">
+        <form method="post" action="/search">
+            <div class="col-4 col-4-mobilep">
+                <label>
+                    Tipo
+                    <select name="type" style="width:25%">
+                        <option value="" selected>-Elige tipo</option>
+                        <option value="deposit">Ingreso</option>
+                        <option value="expense">Gasto</option>
+                    </select>
+                </label>
+            </div>
+            <div class="col-4 col-4-mobilep">
+                <label>
+                    Frecuencia
+                    <select name="frequency" style="width:30%">
+                        <option value="" selected>-Elige Frecuencia</option>
+                        <option value="only">Puntual</option>
+                        <option value="daily">Diario</option>
+                        <option value="weekly">Semanal</option>
+                        <option value="monthly">Mensual</option>
+                        <option value="yearly">Anual</option>
+                    </select>
+                </label>
+            </div>
+            <div class="col-12">
+                <label>
+                    Fecha Inicio<Br>
+                    <input type="date" name="dateInit" id="dateInit" value=""/>
+                    <Br>Fecha Límite<Br>
+                    <input type="date" name="dateEnd" id="dateEnd" value=""/>
+                </label>
+            </div>
+
+
+            <div class="col-12">
+                <ul class="actions special">
+                    <li><input class="small" type="submit" value="Filtrar"/></li>
+                    <li><input class="small" type="reset" value="Cancelar"/></li>
+                    <li><input class="small" type="button" value="Volver"
+                               onClick="history.go(-1);return true;"/>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</section>
+{% include "/Templates/footer.html" %}
