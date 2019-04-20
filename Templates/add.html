@@ -6,7 +6,7 @@
         <p>Añade un nuevo movimiento a tu cuenta.</p>
     </header>
     <div class="box">
-        <form method="post" action="/add">
+        <form method="post" action="/add" accept-charset="UTF-8" enctype="multipart/form-data">
             <div class="row gtr-50 gtr-uniform">
                 <div class="col-12 col-12-mobilep">
                     <label>
@@ -39,8 +39,10 @@
                 </div>
                 <div class="col-12 col-12-mobilep">
                     Resguardo del gasto<Br>
-                    <input type="file" name="invoice" id="invoice" value=""/>
+                    <input type="file" name="invoice" id="invoice" value="" accept="image/*" />
+
                 </div>
+
                 <div class="col-4 col-4-mobilep">
                     <label>
                         Frecuencia *

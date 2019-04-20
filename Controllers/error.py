@@ -8,17 +8,17 @@ import webapp2
 
 class ErrorHandler(webapp2.RequestHandler):
     def get(self):
-        errorMessage = None
+        msg = None
         try:
-            errorMessage = self.request.GET['errorMessage']
+            msg = self.request.GET['msg']
         except:
             msg = None
 
         if msg is None:
-            errorMessage = "CRITICAL - contact development team"
+            msg = "CRITICAL - contact development team"
 
         template_values = {
-            "errorMessage": errorMessage,
+            "msg": msg,
         }
 
         template = JINJA_ENVIRONMENT.get_template("/Templates/error.html")

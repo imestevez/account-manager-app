@@ -3,8 +3,8 @@
 from jinja import JINJA_ENVIRONMENT
 from Models.movement import frequency
 
-from google.appengine.ext import ndb
-
+from google.appengine.ext import ndb, db
+import os
 import webapp2
 import datetime
 import time
@@ -24,12 +24,12 @@ class ShowcurrentHandler(webapp2.RequestHandler):
             movement = ndb.Key(urlsafe=id).get()
         except:
             self.redirect("/error?msg=key does not exist")
-            return
 
         date_split = str(movement.date).split('-')
         template_values = {
             'movement': movement,
             'frequency': frequency,
+            'blob': movement.invoice,
             'date': str(date_split[2] + "/" + date_split[1] + "/" + date_split[0])
         }
         template = JINJA_ENVIRONMENT.get_template("/Templates/showcurrent.html")

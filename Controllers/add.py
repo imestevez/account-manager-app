@@ -1,10 +1,14 @@
 from Models.movement import Movement
 from jinja import JINJA_ENVIRONMENT
-from google.appengine.ext import ndb
+
+from google.appengine.ext import ndb, db
+
 
 import webapp2
 import datetime
 import time
+import os
+import shutil
 
 
 class AddHandler(webapp2.RequestHandler):
@@ -17,10 +21,12 @@ class AddHandler(webapp2.RequestHandler):
 
     def post(self):
         movement = Movement()
-
         movement.title = self.request.get("title").strip()
         movement.amount = float(self.request.get("amount").strip())
-        movement.invoice = self.request.get("invoice").strip()
+
+        invoice = self.request.get("invoice").strip()
+        if invoice:
+            movement.invoice = db.Blob(invoice)
         movement.description = self.request.get("description").strip()
         movement.frequency = self.request.get("frequency").strip()
         date = self.request.get("date").strip().split("-")
@@ -40,3 +46,5 @@ class AddHandler(webapp2.RequestHandler):
         time.sleep(1)  # wait for updates
         self.redirect("/")
 
+    def save_file(self, name):
+        pass

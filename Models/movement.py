@@ -13,7 +13,7 @@ frequency = {'only': 'Puntual',
 class Movement(ndb.Model):
     title = ndb.StringProperty(required=True)
     description = ndb.TextProperty(required=True)
-    invoice = ndb.StringProperty()
+    invoice = ndb.BlobProperty()
     date = ndb.DateProperty(required=True)
     amount = ndb.FloatProperty(required=True)
     frequency = ndb.StringProperty(required=True)

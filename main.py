@@ -11,6 +11,7 @@ from Controllers.edit import EditHandler
 from Controllers.delete import DeleteHandler
 from Controllers.search import SearchHandler
 from Controllers.error import ErrorHandler
+from Controllers.image import ImageHandler
 
 from Models.movement import Movement
 from jinja import JINJA_ENVIRONMENT
@@ -54,34 +55,34 @@ class MainHandler(webapp2.RequestHandler):
 
     def calculate_completed(self, date):
         days = 0
-        if date < self.today:
+        if date <= self.today:
             days = 1
         return days
 
     def calculate_days(self, date):
         days = 0
-        if date < self.today:
+        if date <= self.today:
             diff = self.today - date
             days = diff.days + 1
         return days
 
     def calculate_weeks(self, date):
         days = 0
-        if date < self.today:
+        if date <= self.today:
             diff = self.today - date
             days = (diff.days / Weeks_year) + 1
         return days
 
     def calculate_months(self, date):
         days = 0
-        if date < self.today:
+        if date <= self.today:
             diff = self.today - date
             days = (diff.days / Days_month) + 1
         return days
 
     def calculate_years(self, date):
         days = 0
-        if date < self.today:
+        if date <= self.today:
             diff = self.today - date
             days = (diff.days / Days_year) + 1
         return days
@@ -94,12 +95,11 @@ app = webapp2.WSGIApplication([
     ("/", MainHandler),
     ("/login", LoginHandler),
     ("/add", AddHandler),
-    ("/add", AddHandler),
     ("/showall", ListHandler),
     ("/showcurrent", ShowcurrentHandler),
     ("/edit", EditHandler),
     ("/delete", DeleteHandler),
     ("/search", SearchHandler),
-    ("/error", ErrorHandler)
-
+    ("/error", ErrorHandler),
+    ("/image", ImageHandler)
 ], debug=True)

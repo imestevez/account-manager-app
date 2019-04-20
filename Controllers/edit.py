@@ -1,6 +1,6 @@
 from jinja import JINJA_ENVIRONMENT
 
-from google.appengine.ext import ndb
+from google.appengine.ext import ndb, db
 
 import webapp2
 import datetime
@@ -46,7 +46,9 @@ class EditHandler(webapp2.RequestHandler):
 
         movement.title = self.request.get("title").strip()
         movement.amount = float(self.request.get("amount").strip())
-        movement.invoice = self.request.get("invoice").strip()
+        invoice = self.request.get("invoice_new").strip()
+        if invoice:
+            movement.invoice = db.Blob(invoice)
         movement.description = self.request.get("description").strip()
         movement.frequency = self.request.get("frequency").strip()
         date = self.request.get("date").strip().split("-")

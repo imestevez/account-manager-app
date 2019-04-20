@@ -1,50 +1,64 @@
 {% include "/Templates/header.html" %}
 <section id="main" class="container">
+    <script>
+        function f(blob) {
+            alert("hola blob");
+
+            var image = document.createElement('image');
+            image.src = 'data:image/bmp;base64,' + Base64.encode(blob);
+            document.body.appendChild(image);
+            return true;
+        }
+    </script>
     <header>
         <h2>Vista en detalle</h2>
         <p>Gestiona el movimiento actual.</p>
     </header>
     <div class="box">
-            {% if movement %}
-            <div class="table-wrapper">
-                <H3> <B>Tipo</B>: {% if movement.amount < 0 %}Gasto{% else %}Ingreso{% endif %}</H3>
-                <table >
-                    <tbody>
+        {% if movement %}
+        <div class="table-wrapper">
+            <H3><B>Tipo</B>: {% if movement.amount < 0 %}Gasto{% else %}Ingreso{% endif %}</H3>
+            <table>
+                <tbody>
+                <tr>
+                    <td><B>Concepto</B></td>
+                    <td>{{movement.title}}</td>
+                </tr>
+                <tr>
+                    <td><B>Importe</B></td>
+                    <td>{{movement.amount}}</td>
+                </tr>
+                <tr>
+                    <td><B>Fecha</B></td>
+                    <td>{{date}}</td>
 
-                    <tr>
-                        <td><B>Concepto</B></td>
-                        <td>{{movement.title}}</td>
-                    </tr>
-                    <tr>
-                        <td><B>Importe</B></td>
-                        <td>{{movement.amount}}</td>
-                    </tr>
-                    <tr>
-                        <td><B>Fecha</B></td>
-                        <td>{{date}}</td>
-
-                    </tr>
-                    <tr>
-                        <td><B>Frecuencia</B></td>
-                        <td>{{frequency[movement.frequency]}}</td>
-                    </tr>
-                    <tr>
-                        <td><B>Comprobante</B></td>
-                        {% if movement.invoice == "" %}
-                        <td>-</td>
-                        {% else %}
-                        <td><a href="{{movement.invoice}}"/></td>
-                        {% endif %}
-                    </tr>
-                    </tbody>
-                </table>
+                </tr>
+                <tr>
+                    <td><B>Frecuencia</B></td>
+                    <td>{{frequency[movement.frequency]}}</td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;"><B>Comprobante</B></td>
+                    {% if movement.invoice == "" %}
+                    <td>-</td>
+                    {% else %}
+                    <td>
+                        <a href="/image?id={{movement.key.urlsafe()}}">
+                            <img style="width: 128px; height: 128px" src="/image?id={{movement.key.urlsafe()}}"/>
+                        </a>
+                    </td>
+                    {% endif %}
+                </tr>
+                </tbody>
+            </table>
 
             <div class="col-12">
                 <B>Descripción</B>
                 <textarea name="description" id="description" placeholder="Introduce la descripción"
                           rows="6" readonly> {{movement.description}}</textarea>
             </div>
-                <Br>
+
+            <Br>
             <div class="col-12">
                 <ul class="actions special">
                     <li><a class="button small"

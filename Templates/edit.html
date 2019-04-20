@@ -7,7 +7,8 @@
     </header>
     <div class="box">
         {% if movement %} <!-- If movement exists -->
-        <form method="post" action="/edit?id={{movement.key.urlsafe()}}">
+        <form method="post" action="/edit?id={{movement.key.urlsafe()}}" accept-charset="UTF-8"
+              enctype="multipart/form-data">
             <div class="row gtr-50 gtr-uniform">
                 <div class="col-12 col-12-mobilep">
                     <label>
@@ -46,8 +47,19 @@
                     </label>
                 </div>
                 <div class="col-12 col-12-mobilep">
-                    Resguardo del gasto<Br>
-                    <input type="file" name="invoice" id="invoice" value="{{movement.invoice}}"/>
+                    Resguardo del movimiento
+                    <Br>
+
+                    <a href="/image?id={{movement.key.urlsafe()}}">
+                        <img style="width: 128px; height: 128px" src="/image?id={{movement.key.urlsafe()}}"/>
+                    </a>
+                    <Br>
+                    <Br>
+                </div>
+
+                <div class="col-12 col-12-mobilep">
+                    Sobreescribir resguardo<Br>
+                    <input type="file" name="invoice_new" id="invoice_new" value="" accept="image/*"/>
                 </div>
                 <div class="col-4 col-4-mobilep">
                     <label>
@@ -60,7 +72,7 @@
                             <option value="monthly">Mensual</option>
                             <option value="yearly">Anual</option>
                             {% elif movement.frequency == 'daily' %}
-                            <option value="only" >Puntual</option>
+                            <option value="only">Puntual</option>
                             <option value="daily" selected>Diario</option>
                             <option value="weekly">Semanal</option>
                             <option value="monthly">Mensual</option>
