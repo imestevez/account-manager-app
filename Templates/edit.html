@@ -7,8 +7,9 @@
     </header>
     <div class="box">
         {% if movement %} <!-- If movement exists -->
-        <form method="post" action="/edit?id={{movement.key.urlsafe()}}" accept-charset="UTF-8"
-              enctype="multipart/form-data">
+        <form id="formEDIT" method="post" action="/edit?id={{movement.key.urlsafe()}}" accept-charset="UTF-8"
+              enctype="multipart/form-data"
+              onsubmit="return validate('formEDIT')">
             <div class="row gtr-50 gtr-uniform">
                 <div class="col-12 col-12-mobilep">
                     <label>
@@ -27,18 +28,27 @@
                 <div class="col-6 col-6-mobilep">
                     Concepto *
                     <input type="text" name="title" id="title" value="{{movement.title}}"
-                           placeholder="Introduce el concepto" required/>
+                           placeholder="Introduce el concepto"
+                           onchange="return validate_text(this)"
+                           onblur="return validate_text(this)"/>
+                    <div class="error" id="div_title"></div>
                 </div>
                 <div class="col-4 col-4-mobilep" style="margin-left: 10%">
                     Importe *
                     <input style="height: 65%;" type="number" name="amount" id="amount" value="{{movement.amount}}"
-                           placeholder="120" step="any"
-                           required/>
+                           placeholder="120" step="any" min="0.01"
+                           onchange="return validate_number(this)"
+                           onblur="return validate_number(this)"/>
+                    <div class="error" id="div_amount"></div>
                 </div>
                 <div class="col-12">
                     Descripción *
                     <textarea name="description" id="description" placeholder="Introduce la descripción"
-                              rows="6" required> {{movement.description}}</textarea>
+                              rows="6"
+                              onchange="return validate_text(this)"
+                              onblur="return validate_text(this)"
+                    >{{movement.description}}</textarea>
+                    <div class="error" id="div_description"></div>
                 </div>
                 <div class="col-12">
                     <label>
@@ -49,10 +59,13 @@
                 <div class="col-12 col-12-mobilep">
                     Resguardo del movimiento
                     <Br>
-
+                    {% if movement.invoice == "" %}
+                    -
+                    {% else %}
                     <a href="/image?id={{movement.key.urlsafe()}}">
                         <img style="width: 128px; height: 128px" src="/image?id={{movement.key.urlsafe()}}"/>
                     </a>
+                    {% endif %}
                     <Br>
                     <Br>
                 </div>

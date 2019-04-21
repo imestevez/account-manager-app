@@ -1,15 +1,15 @@
 {% include "/Templates/header.html" %}
 <section id="main" class="container">
     <header>
-        <h2>Eliminar Movimiento</h2>
-        <p>Elimina el movimiento de tu cuenta.</p>
+        <h2>Elimnar Movimientos</h2>
+        <p>Elimina los movimientos de tu cuenta.</p>
     </header>
     <span class="image featured"><img src="" alt=""/></span>
     <div class="box">
 
-        <h3 style="text-align: center"><B>¿Desea eliminar el movimiento {{movement.title}} ?</B></h3>
-        <p><B style="color: red"> *AVISO: </B>Si eliminas el movimiento no lo prodrás recuperar.</p>
-        <form method="post" action="/delete?id={{movement.key.urlsafe()}}">
+        <h3 style="text-align: center"><B>¿Desea eliminar todos los movimientos? Total: {{movements}}</B></h3>
+        <p><B style="color: red"> *AVISO: </B>Si los eliminas no los prodrás recuperar.</p>
+        <form method="post" action="/deleteAll?">
             <div class="col-12">
                 <ul class="actions special">
                     <li><input class="small" type="submit" value="Eliminar"/></li>

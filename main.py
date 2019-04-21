@@ -9,6 +9,7 @@ from Controllers.showall import ListHandler
 from Controllers.showcurrent import ShowcurrentHandler
 from Controllers.edit import EditHandler
 from Controllers.delete import DeleteHandler
+from Controllers.delete import DeleteAllHandler
 from Controllers.search import SearchHandler
 from Controllers.error import ErrorHandler
 from Controllers.image import ImageHandler
@@ -99,6 +100,7 @@ app = webapp2.WSGIApplication([
     ("/showcurrent", ShowcurrentHandler),
     ("/edit", EditHandler),
     ("/delete", DeleteHandler),
+    ("/deleteAll", DeleteAllHandler),
     ("/search", SearchHandler),
     ("/error", ErrorHandler),
     ("/image", ImageHandler)

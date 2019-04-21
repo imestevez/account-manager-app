@@ -25,8 +25,10 @@ class AddHandler(webapp2.RequestHandler):
         movement.amount = float(self.request.get("amount").strip())
 
         invoice = self.request.get("invoice").strip()
-        if invoice:
+        if invoice != "":
             movement.invoice = db.Blob(invoice)
+        else:
+            movement.invoice = ""
         movement.description = self.request.get("description").strip()
         movement.frequency = self.request.get("frequency").strip()
         date = self.request.get("date").strip().split("-")

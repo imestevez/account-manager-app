@@ -86,25 +86,6 @@
         });
 
     }
-    /*   $('input[type=file]').change(function () {
-           var filePath = $('#invoice').val();
-
-       });
-       $('#invoice').change(function (event) {
-           var tmppath = URL.createObjectURL(event.target.files[0]);
-           var elem = document.getElementById("invoice");
-           //elem.innerHTML = tmppath;
-           return true;
-       });*/
-   /* $(function () {
-        $('#invoice').on('change', function () {
-            var filePath = $(this).val();
-            var elem = document.getElementById("invoice_str");
-            elem.value =  document.getElementById("invoice").val();
-            alert(elem.value)
-
-        });
-    });*/
 
 })(jQuery);
 

@@ -31,17 +31,17 @@ class EditHandler(webapp2.RequestHandler):
 
     def post(self):
         try:
-            id = self.request.GET['id']
+            id = self.request.GET['id']  # Get the id from view
         except:
             id = None
 
         if id is None:
-            self.redirect("/error?msg=Movement was not found")
+            self.redirect("/error?msg=Movement id was missed")
             return
         try:
-            movement = ndb.Key(urlsafe=id).get()
+            movement = ndb.Key(urlsafe=id).get()  # Get the movement object
         except:
-            self.redirect("/error?msg=key does not exist")
+            self.redirect("/error?msg=There isn't any movement with the sent id")
             return
 
         movement.title = self.request.get("title").strip()

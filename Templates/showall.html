@@ -17,6 +17,8 @@
                     <th>
                         <a class="button small" href="/search?">Filtrar</a>
                         <a class="button small" href="/add?">Añadir</a>
+                        <a class="button small" href="/deleteAll">Eliminar Todos</a>
+
 
                     </th>
                 </tr>
@@ -29,7 +31,7 @@
                     <td>{{frequency[movement.frequency]}}</td>
                     <td>{{dates[movement.key]}}</td>
                     <td>
-                        <a class="button small"
+                        <a style="margin-left: 20%" class="button small"
                            href="/showcurrent?id={{movement.key.urlsafe()}}">Detalles</a>
                     </td>
                 </tr>
@@ -38,7 +40,7 @@
             </table>
         </div>
         {% else %}
-            <H3>No hay ninún movimiento que coincida con los parámentros de búsqueda.</H3>
+        <H3>No hay ninún movimiento que coincida con los parámentros de búsqueda.</H3>
         <br>
         {% endif %}
 

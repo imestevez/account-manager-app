@@ -6,7 +6,8 @@
         <p>Añade un nuevo movimiento a tu cuenta.</p>
     </header>
     <div class="box">
-        <form method="post" action="/add" accept-charset="UTF-8" enctype="multipart/form-data">
+        <form id="formADD" method="post" action="/add" accept-charset="UTF-8" enctype="multipart/form-data"
+              onsubmit="return validate('formADD')">
             <div class="row gtr-50 gtr-uniform">
                 <div class="col-12 col-12-mobilep">
                     <label>
@@ -19,30 +20,43 @@
                 </div>
                 <div class="col-6 col-6-mobilep">
                     Concepto *
-                    <input type="text" name="title" id="title" value="" placeholder="Introduce el concepto" required/>
+                    <input type="text" name="title" id="title" value="" placeholder="Introduce el concepto"
+                           onclick="return validate_text(this)"
+                           onchange="return validate_text(this)"
+                           onblur="return validate_text(this)"/>
+                    <div class="error" id="div_title"></div>
+
                 </div>
                 <div class="col-4 col-4-mobilep" style="margin-left: 10%">
                     Importe *
                     <input style="height: 65%;" type="number" name="amount" id="amount" value="" placeholder="120"
-                           step="any" required/>
+                           step="any" min="0.01"
+                           onclick="return validate_number(this)"
+                           onchange="return validate_number(this)"
+                           onblur="return validate_number(this)"/>
+                    <div class="error" id="div_amount"></div>
                 </div>
                 <div class="col-12">
                     Descripción *
                     <textarea name="description" id="description" placeholder="Introduce la descripción"
-                              rows="6" required></textarea>
+                              rows="6"
+                              onclick="return validate_text(this)"
+                              onchange="return validate_text(this)"
+                              onblur="return validate_text(this)"
+                    ></textarea>
+                    <div class="error" id="div_description"></div>
                 </div>
                 <div class="col-12">
                     <label>
-                        Fecha<Br>
+                        Fecha *<Br>
                         <input type="date" name="date" id="date" value="{{today}}" required/>
                     </label>
                 </div>
                 <div class="col-12 col-12-mobilep">
                     Resguardo del gasto<Br>
-                    <input type="file" name="invoice" id="invoice" value="" accept="image/*" />
-
+                    <input type="file" name="invoice" id="invoice" value="" accept="image/*"/>
+                    <div class="error" name="div_invoice" id="div_invoice"></div>
                 </div>
-
                 <div class="col-4 col-4-mobilep">
                     <label>
                         Frecuencia *
