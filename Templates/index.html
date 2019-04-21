@@ -1,7 +1,16 @@
 {% include "/Templates/header.html" %}
+<header>
+<nav id="nav">
+    <ul>
+        <li><a href="/">Acount Manager App</a></li>
+        <li><a href="{{logout}}" class="button">Salir</a></li>
+    </ul>
+</nav>
+</header>
+<!-- Main -->
 <section id="main" class="container">
     <header>
-        <h2>Bienvenido {{name}} </h2>
+        <h2>Bienvenido {{user}} </h2>
         <p>Administra tus gastos e ingresos con Account Manager App.</p>
     </header>
     <span class="image featured"><img src="" alt=""/></span>

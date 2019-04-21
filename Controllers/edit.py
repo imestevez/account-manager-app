@@ -1,6 +1,7 @@
 from jinja import JINJA_ENVIRONMENT
 
 from google.appengine.ext import ndb, db
+from google.appengine.api import users
 
 import webapp2
 import datetime
@@ -9,25 +10,31 @@ import time
 
 class EditHandler(webapp2.RequestHandler):
     def get(self):
-        try:
-            id = self.request.GET['id']
-        except:
-            id = None
+        self.user = users.get_current_user()
+        if self.user:
+            logout = users.create_logout_url("/")
+            try:
+                id = self.request.GET['id']
+            except:
+                id = None
 
-        if id is None:
-            self.redirect("/error?msg=Movement was not found")
-            return
-        try:
-            movement = ndb.Key(urlsafe=id).get()
-        except:
-            self.redirect("/error?msg=key does not exist")
-            return
+            if id is None:
+                self.redirect("/error?msg=Movement was not found")
+                return
+            try:
+                movement = ndb.Key(urlsafe=id).get()
+            except:
+                self.redirect("/error?msg=key does not exist")
+                return
 
-        template_values = {
-            'movement': movement,
-        }
-        template = JINJA_ENVIRONMENT.get_template("/Templates/edit.html")
-        self.response.write(template.render(template_values))
+            template_values = {
+                'movement': movement,
+                'logout': logout
+            }
+            template = JINJA_ENVIRONMENT.get_template("/Templates/edit.html")
+            self.response.write(template.render(template_values))
+        else:
+            self.redirect('/')
 
     def post(self):
         try:

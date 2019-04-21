@@ -1,31 +1,22 @@
 {% include "/Templates/header.html" %}
-
+<header>
+    <nav id="nav">
+        <ul>
+            <li><a href="/">Acount Manager App</a></li>
+            <li><a href="{{login}}" class="button">Acceder</a></li>
+        </ul>
+    </nav>
+</header>
 <!-- Main -->
-<section id="main" class="container medium">
-    <header>
-        <h2>Iniciar sesión</h2>
-    </header>
-    <div class="box">
-        <form method="post" action="#">
-            <div class="row gtr-50 gtr-uniform">
-                <form name="frmLogin" action="/login" method="post" onsubmit="return validate('frmLogin')">
-                    <div class="col-12">
-                        <input type="text" name="login" id="login" placeholder="Email"/>
-                    </div>
-                    <div class="col-12">
-                        <input type="password" id="id_password" placeholder="Password"/>
-                    </div>
-                    <div class="col-12">
-                        <ul class="actions special">
-                            <li>
-                                <input type="submit" value="Confirm"/>
-                            </li>
-                        </ul>
-                    </div>
-                </form>
-            </div>
-        </form>
-    </div>
-</section>
 
+<section id="main" class="container">
+    <header>
+        <h2>Inicia sesión en AM-App </h2>
+        <p>Administra tus gastos e ingresos con Account Manager App.</p>
+    </header>
+    <span class="image featured"><img src="" alt=""/></span>
+    <h3><B>Día {{today}} </B></h3>
+
+</section>
 {% include "/Templates/footer.html" %}
+

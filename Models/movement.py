@@ -17,3 +17,4 @@ class Movement(ndb.Model):
     date = ndb.DateProperty(required=True)
     amount = ndb.FloatProperty(required=True)
     frequency = ndb.StringProperty(required=True)
+    user = ndb.StringProperty(required=True)
