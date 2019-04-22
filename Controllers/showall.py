@@ -13,7 +13,7 @@ class ListHandler(webapp2.RequestHandler):
         if self.user:
             logout = users.create_logout_url("/")
 
-            self.movements = Movement.query().order(-Movement.date)
+            self.movements = Movement.query(Movement.user == self.user.user_id()).order(-Movement.date)
             self.dates = dict()  # Creates a dictionary to store the dates with format dd/mm/yyy
             self.date_format()  # Call to refill dates dictionary
 

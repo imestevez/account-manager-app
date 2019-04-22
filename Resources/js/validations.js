@@ -25,7 +25,7 @@ function validate(id) {
 function validate_text(field) {
     var toret = false;
     var element = document.getElementById(field.id);
-    var expr = /^[a-zA-ZáéíóúÁÉÍÓÚ ,@€%"¡!¿?'.-_]+$/;
+    var expr = /^[a-zA-ZáéíóúÁÉÍÓÚ ,@€%"¡!¿?'._\-\s]+$/;
 
     var varDivError = "div_".concat(element.id);
     if (element.value === "") {

@@ -37,42 +37,55 @@ class DeleteHandler(webapp2.RequestHandler):
             self.redirect('/')
 
     def post(self):
-        try:
-            id = self.request.GET['id']
-        except:
-            id = None
+        self.user = users.get_current_user()
+        if self.user:
+            try:
+                id = self.request.GET['id']
+            except:
+                id = None
 
-        if id == None:
-            self.redirect("/error?msg=Movement was not found")
-            return
-        try:
-            movement = ndb.Key(urlsafe=id).get()
-        except:
-            self.redirect("/error?msg=key does not exist")
-            return
+            if id == None:
+                self.redirect("/error?msg=Movement was not found")
+                return
+            try:
+                movement = ndb.Key(urlsafe=id).get()
+            except:
+                self.redirect("/error?msg=key does not exist")
+                return
 
-        movement.key.delete()
-        # Save
-        time.sleep(1)  # wait for updates
-        self.redirect("/")
+            movement.key.delete()
+            # Save
+            time.sleep(1)  # wait for updates
+            self.redirect("/")
+        else:
+            self.redirect("/")
 
 
 class DeleteAllHandler(webapp2.RequestHandler):
     def get(self):
-        movements = Movement.query()  # Gets all movents
-        template_values = {
-            'movements': movements.count(),
-        }
+        self.user = users.get_current_user()
+        if self.user:
+            logout = users.create_logout_url('/')
+            movements = Movement.query(Movement.user == self.user.user_id())  # Gets all movents
+            template_values = {
+                'movements': movements.count(),
+                'logout': logout
+            }
 
-        template = JINJA_ENVIRONMENT.get_template("/Templates/deleteAll.html")
-        self.response.write(template.render(template_values))
+            template = JINJA_ENVIRONMENT.get_template("/Templates/deleteAll.html")
+            self.response.write(template.render(template_values))
+        else:
+            self.redirect('/')
 
     def post(self):
-        movements = Movement.query()  # Gets all movents
-        num_Movements = movements.count()  # Counts the number of movents
-        for movement in movements:
-            movement.key.delete()  # Deletes all movements
+        self.user = users.get_current_user()
+        if self.user:
+            movements = Movement.query(Movement.user == self.user.user_id())  # Gets all movents
+            for movement in movements:
+                movement.key.delete()  # Deletes all movements
 
-        # Save
-        time.sleep(1)  # wait for updates
-        self.redirect("/")
+            # Save
+            time.sleep(1)  # wait for updates
+            self.redirect("/")
+        else:
+            self.redirect("/")

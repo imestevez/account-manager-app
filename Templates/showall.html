@@ -1,8 +1,5 @@
 {% include "/Templates/header.html" %}
-<header>
-<nav id="nav">
-    <ul>
-        <li><a href="/">Acount Manager App</a></li>
+
         <li><a href="{{logout}}" class="button">Salir</a></li>
     </ul>
 </nav>
@@ -49,7 +46,9 @@
             </table>
         </div>
         {% else %}
-        <H3>No hay ninún movimiento que coincida con los parámentros de búsqueda.</H3>
+            {% if search %}<H3>No hay ninún movimiento que coincida con los parámentros de búsqueda.</H3>
+            {% else %} <H3>No hay ninún movimiento registrado en tu cuenta.</H3>
+            {% endif %}
         <br>
         {% endif %}
 

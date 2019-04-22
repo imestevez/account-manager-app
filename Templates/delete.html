@@ -1,8 +1,5 @@
 {% include "/Templates/header.html" %}
-<header>
-<nav id="nav">
-    <ul>
-        <li><a href="/">Acount Manager App</a></li>
+
         <li><a href="{{logout}}" class="button">Salir</a></li>
     </ul>
 </nav>
@@ -16,7 +13,7 @@
     <span class="image featured"><img src="" alt=""/></span>
     <div class="box">
 
-        <h3 style="text-align: center"><B>¿Desea eliminar el movimiento {{movement.title}} ?</B></h3>
+        <h3 style="text-align: center"><B>¿Desea eliminar el movimiento <i>{{movement.title}}</i> ?</B></h3>
         <p><B style="color: red"> *AVISO: </B>Si eliminas el movimiento no lo prodrás recuperar.</p>
         <form method="post" action="/delete?id={{movement.key.urlsafe()}}">
             <div class="col-12">

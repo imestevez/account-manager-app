@@ -112,7 +112,6 @@ class MainHandler(webapp2.RequestHandler):
         return days
 
 
-
 app = webapp2.WSGIApplication([
     ("/", MainHandler),
     ("/add", AddHandler),

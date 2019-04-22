@@ -50,7 +50,9 @@ class SearchHandler(webapp2.RequestHandler):
                 'frequency': frequency,
                 'movements': self.movs_list,
                 'dates': self.dates,
-                'numMovements': len(self.movs_list)
+                'numMovements': len(self.movs_list),
+                'logout': logout,
+                'search': True
             }
             template = JINJA_ENVIRONMENT.get_template("/Templates/showall.html")
             self.response.write(template.render(template_values))
