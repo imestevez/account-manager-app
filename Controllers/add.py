@@ -29,7 +29,7 @@ class AddHandler(webapp2.RequestHandler):
     def post(self):
         self.user = users.get_current_user()
 
-        if self.user:
+        if self.user:  # If there is user
             movement = Movement()
             movement.user = self.user.user_id()
             movement.title = self.request.get("title").strip()

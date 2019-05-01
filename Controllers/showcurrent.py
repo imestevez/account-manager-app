@@ -12,7 +12,7 @@ import webapp2
 class ShowcurrentHandler(webapp2.RequestHandler):
     def get(self):
         self.user = users.get_current_user()
-        if self.user:
+        if self.user:  # If there is user
             logout = users.create_logout_url("/")
             try:
                 id = self.request.GET['id']  # Get the id from view

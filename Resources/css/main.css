@@ -2308,8 +2308,8 @@ input[type="radio"] + label:before {
 
 input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before {
-    background: #666;
-    border-color: #666;
+    background: #444;
+    border-color: #444;
     color: #ffffff;
     content: '\f00c';
 }
@@ -2488,7 +2488,7 @@ input[type="radio"] + label:before {
 }
 
 .icon.major {
-    background: #666;
+    background: #444;
     border-radius: 100%;
     color: #ffffff;
     cursor: default;
@@ -2504,7 +2504,7 @@ input[type="radio"] + label:before {
 }
 
 .icon.major.accent1 {
-    background: #666;
+    background: #444;
     color: #ffffff;
 }
 
@@ -2836,7 +2836,7 @@ input[type="button"],
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    background-color: #666;
+    background-color: #444;
     border-radius: 6px;
     border: 0;
     color: #ffffff;
@@ -3281,7 +3281,7 @@ body.landing #page-wrapper {
 
 #banner {
     background-attachment: scroll, fixed;
-    background-color: #666;
+    background-color: #444;
     background-image: url("images/overlay.png"), url("../../Views/images/padel.jpg");
     background-position: top left, center center;
     background-repeat: repeat, no-repeat;
@@ -3344,7 +3344,7 @@ body.landing #page-wrapper {
 #banner input[type="button"].primary,
 #banner .button.primary {
     background: #fff;
-    color: #666 !important;
+    color: #444 !important;
 }
 
 

@@ -10,13 +10,11 @@ import webapp2
 class ListHandler(webapp2.RequestHandler):
     def get(self):
         self.user = users.get_current_user()
-        if self.user:
+        if self.user:# If there is user
             logout = users.create_logout_url("/")
-
             self.movements = Movement.query(Movement.user == self.user.user_id()).order(-Movement.date)
             self.dates = dict()  # Creates a dictionary to store the dates with format dd/mm/yyy
             self.date_format()  # Call to refill dates dictionary
-
             template_values = {
                 'frequency': frequency,
                 'movements': self.movements,

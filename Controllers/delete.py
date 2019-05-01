@@ -1,3 +1,5 @@
+# Delete - Used to delete a movement
+
 from Models.movement import Movement
 from jinja import JINJA_ENVIRONMENT
 from google.appengine.ext import ndb
@@ -38,7 +40,7 @@ class DeleteHandler(webapp2.RequestHandler):
 
     def post(self):
         self.user = users.get_current_user()
-        if self.user:
+        if self.user: # If there is user
             try:
                 id = self.request.GET['id']
             except:
