@@ -1,7 +1,7 @@
 {% include "/Templates/header.html" %}
 
-        <li><a href="{{logout}}" class="button">Salir</a></li>
-    </ul>
+<li><a href="{{logout}}" class="button">Salir</a></li>
+</ul>
 </nav>
 </header>
 <!-- Main -->
@@ -20,6 +20,8 @@
                     <th><B>Importe</B></th>
                     <th><B>Tipo</B></th>
                     <th><B>Fecha</B></th>
+                    <th><B>Total</B></th>
+
                     <th>
                         <a class="button small" href="/search?">Filtrar</a>
                         <a class="button small" href="/add?">Añadir</a>
@@ -34,6 +36,8 @@
                     <td>{{movement.amount}}</td>
                     <td>{{frequency[movement.frequency]}}</td>
                     <td>{{dates[movement.key]}}</td>
+                    <td>{{total[movement.key]}}</td>
+
                     <td>
                         <a style="margin-left: 20%" class="button small"
                            href="/showcurrent?id={{movement.key.urlsafe()}}">Detalles</a>
@@ -44,9 +48,9 @@
             </table>
         </div>
         {% else %}
-            {% if search %}<H3>No hay ninún movimiento que coincida con los parámentros de búsqueda.</H3>
-            {% else %} <H3>No hay ninún movimiento registrado en tu cuenta.</H3>
-            {% endif %}
+        {% if search %}<H3>No hay ninún movimiento que coincida con los parámentros de búsqueda.</H3>
+        {% else %} <H3>No hay ninún movimiento registrado en tu cuenta.</H3>
+        {% endif %}
         <br>
         {% endif %}
 

@@ -25,7 +25,7 @@ function validate(id) {
 function validate_text(field) {
     var toret = false;
     var element = document.getElementById(field.id);
-    var expr = /^[a-zA-ZáéíóúÁÉÍÓÚ ,@€%"¡!¿?'._\-\s]+$/;
+    var expr = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ,@€%"¡!¿?'._\-\s]+$/;
 
     var varDivError = "div_".concat(element.id);
     if (element.value === "") {
@@ -50,7 +50,7 @@ function validate_text(field) {
 function validate_number(field) {
     var toret = false;
     var element = document.getElementById(field.id);
-    var expr = /^[0-9]+[,.]?[0-9]*$/;
+    var expr = /^[-+]?[0-9]+[,.]?[0-9]*$/;
     var varDivError = "div_".concat(element.id);
     if (element.value === "") {
         element.setCustomValidity("El campo es obligatorio");
@@ -58,15 +58,9 @@ function validate_number(field) {
         toret = false;
     } else {
         if (expr.test(element.value)) {
-            if (element.value === "0") {
-                element.setCustomValidity("Importe mayor que 0.");
-                showZeroError(varDivError);
-                toret = false;
-            } else {
-                hideError(varDivError);
-                element.setCustomValidity("");
-                toret = true;
-            }
+            hideError(varDivError);
+            element.setCustomValidity("");
+            toret = true;
         } else {
             element.setCustomValidity("Sólo números positivos.");
             showNumberError(varDivError);

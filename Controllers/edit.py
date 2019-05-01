@@ -61,7 +61,7 @@ class EditHandler(webapp2.RequestHandler):
         movement.description = self.request.get("description").strip()
         movement.frequency = self.request.get("frequency").strip()
         date = self.request.get("date").strip().split("-")
-        movement.date_m = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
+        movement.date = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
 
         type = self.request.get("type").strip()
         if type == "deposit":  # if is a deposit

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# movement-manager - Ivan Martinez Estevez (04/2019)
+# account-manager - Ivan Martinez Estevez (04/2019)
 #
 
 from Controllers.add import AddHandler
@@ -23,7 +23,7 @@ import datetime
 Months = 12
 Days_month = 30
 Days_year = 365
-Weeks_year = Months * 4
+Days_week = 7
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -94,7 +94,7 @@ class MainHandler(webapp2.RequestHandler):
         days = 0
         if date <= self.today:
             diff = self.today - date
-            days = (diff.days / Weeks_year) + 1
+            days = (diff.days / Days_week) + 1
         return days
 
     def calculate_months(self, date):
