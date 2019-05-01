@@ -60,8 +60,8 @@ class EditHandler(webapp2.RequestHandler):
             movement.invoice = db.Blob(invoice)
         movement.description = self.request.get("description").strip()
         movement.frequency = self.request.get("frequency").strip()
-        date = self.request.get("date").strip().split("-")
-        movement.date = datetime.datetime(int(date[0]), int(date[1]), int(date[2]))
+        date_m = self.request.get("date").strip().split("-")
+        movement.date = datetime.datetime(int(date_m[0]), int(date_m[1]), int(date_m[2]))
 
         type = self.request.get("type").strip()
         if type == "deposit":  # if is a deposit

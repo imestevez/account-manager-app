@@ -70,6 +70,9 @@ function validate_number(field) {
     return toret;
 }
 
+function date() {
+    
+}
 function showEmptyError(id) {
     var divErr = document.getElementById(id);
     divErr.innerHTML = "El campo es obligatorio";
