@@ -9,6 +9,10 @@ import webapp2
 import datetime
 import time
 
+Months = 12
+Days_month = 30
+Days_year = 365
+Days_week = 7
 
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
@@ -23,12 +27,15 @@ class SearchHandler(webapp2.RequestHandler):
             self.redirect('/')
 
     def post(self):
+        self.today = datetime.date.today()
+
         self.user = users.get_current_user()
         if self.user:
             logout = users.create_logout_url("/")
 
             self.movs_list = list()  # List for send the movements to the view
             self.dates = dict()  # Creates a dictionary to store the dates with format dd/mm/yyy
+            self.calulate_total()
 
             self.type = self.request.get('type').strip()
             self.frequency = self.request.get('frequency').strip()
@@ -50,6 +57,7 @@ class SearchHandler(webapp2.RequestHandler):
                 'frequency': frequency,
                 'movements': self.movs_list,
                 'dates': self.dates,
+                'total': self.total_Movements,
                 'numMovements': len(self.movs_list),
                 'logout': logout,
                 'search': True
@@ -58,6 +66,55 @@ class SearchHandler(webapp2.RequestHandler):
             self.response.write(template.render(template_values))
         else:
             self.redirect('/')
+    def calulate_total(self):
+        self.total_Movements = {}
+        total_amount = 0
+        for movement in self.movements:
+            if movement.frequency == 'only':
+                total_amount = movement.amount * self.calculate_completed(movement.date)
+            elif movement.frequency == 'daily':
+                total_amount = movement.amount * self.calculate_days(movement.date)
+            elif movement.frequency == 'weekly':
+                total_amount = movement.amount * self.calculate_weeks(movement.date)
+            elif movement.frequency == 'monthly':
+                total_amount = movement.amount * self.calculate_months(movement.date)
+            elif movement.frequency == 'yearly':
+                total_amount = movement.amount * self.calculate_years(movement.date)
+            self.total_Movements[movement.key] = total_amount
+
+    def calculate_completed(self, date):
+        days = 0
+        if date <= self.today:
+            days = 1
+        return days
+
+    def calculate_days(self, date):
+        days = 0
+        if date <= self.today:
+            diff = self.today - date
+            days = diff.days + 1
+        return days
+
+    def calculate_weeks(self, date):
+        days = 0
+        if date <= self.today:
+            diff = self.today - date
+            days = (diff.days / Days_week) + 1
+        return days
+
+    def calculate_months(self, date):
+        days = 0
+        if date <= self.today:
+            diff = self.today - date
+            days = (diff.days / Days_month) + 1
+        return days
+
+    def calculate_years(self, date):
+        days = 0
+        if date <= self.today:
+            diff = self.today - date
+            days = (diff.days / Days_year) + 1
+        return days
 
     def date_format(self):
         for movement in self.movements:
