@@ -14,6 +14,7 @@ Days_month = 30
 Days_year = 365
 Days_week = 7
 
+
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
         self.user = users.get_current_user()
@@ -35,7 +36,6 @@ class SearchHandler(webapp2.RequestHandler):
 
             self.movs_list = list()  # List for send the movements to the view
             self.dates = dict()  # Creates a dictionary to store the dates with format dd/mm/yyy
-            self.calulate_total()
 
             self.type = self.request.get('type').strip()
             self.frequency = self.request.get('frequency').strip()
@@ -52,6 +52,7 @@ class SearchHandler(webapp2.RequestHandler):
 
             self.search()  # Searches the mathing parameters
             self.date_format()  # Call to refill dates dictionary
+            self.calulate_total()
 
             template_values = {
                 'frequency': frequency,
@@ -66,6 +67,7 @@ class SearchHandler(webapp2.RequestHandler):
             self.response.write(template.render(template_values))
         else:
             self.redirect('/')
+
     def calulate_total(self):
         self.total_Movements = {}
         total_amount = 0
