@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="google-appengine-python" name="Google App Engine (Python)">
       <configuration>
-        <option name="rootFolder" value="C:\Users\ivan\PycharmProjects\GAE\Proyecto\Proyecto GAE\account-manager" />
+        <option name="rootFolder" value="C:\Users\ivan\PycharmProjects\GAE\Proyecto\Proyecto GAE\account-manager-app" />
         <option name="sdkFolder" value="C:\Users\ivan\google-cloud-sdk\platform\google_appengine" />
         <option name="templatesFolder" value="" />
         <option name="oauth2" value="false" />
